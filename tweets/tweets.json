@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "text": "hi how are you?"
+    },
+    {
+        "id": 2,
+        "text": "new event planned at O2 theatre on 30th Aug 2022"
+    },
+    {
+        "id": 3,
+        "text": "new event planned at Wembly stadium on 27th Aug 2022"
+    },
+    {
+        "id": 4,
+        "text": "new event planned at Cathedral church on 22nd Aug 2022"
+    },
+    {
+        "id": 5,
+        "text": "new event planned at Old Church, Chadwell Heath on 2nd Sept Aug 2022"
+    }
+]
