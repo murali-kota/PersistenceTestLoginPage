@@ -12,7 +12,7 @@
                                 <div class="center-block" style="max-width: 66%; margin-top: 20px; margin-bottom: 20px;">
                                 <img id="" src="/assets/images/Onclusive_ForwardPlanner_Logo.svg" alt="Product Logo" />                                
                                 </div>
-                                <form>
+                                <form  accept-charset="UTF-8" v-on:submit.prevent="onSubmit()"  method="POST">
                                    <div class="form-group">
                                       <label>Username</label>
                                         <input id="input-email" v-model="email" class="form-control" type="email" placeholder="Enter email" />                                 
@@ -25,15 +25,16 @@
                                         <span class="checkbox-inline"><input id="cphBody_loginMain_chkRememberMe" type="checkbox" name="ctl00$cphBody$loginMain$chkRememberMe" /><label for="cphBody_loginMain_chkRememberMe">Remember Me</label></span>
                                     </div>
                                     <div class="form-group">
-                                        <input type="submit" name="ctl00$cphBody$loginMain$Button1" value="Log In" class="btn btn-planner"/>
+                                        <!-- <input type="submit" name="ctl00$cphBody$loginMain$Button1" value="Log In" class="btn btn-planner"/> -->
+                                        <button type="submit" class="btn btn-planner">Submit</button>
                                     </div>
-                                    <p v-if="errors.length">
-                                      <b>Please correct the following error(s):</b>
-                                      <ul>
+                                    <p v-if="errors.length" class="alert alert-danger login-msg">
+                                      <!-- <b>Please correct the following error(s):</b> -->
+                                      <ul style="list-style-type:none;">
                                         <li v-for="error in errors">{{ error }}</li>
                                       </ul>
                                     </p>
-                                    <div class="success" v-if="isSuccess">We received your submission, thank you!</div>
+                                    <div v-if="isSuccess" class="alert alert-success">We received your submission, thank you!</div>
                                 </form>
 
                     <div id="cphBody_divSupport">
@@ -93,12 +94,12 @@ export default {
   methods: {
       onSubmit(event) {
          let data = {
-        password: this.name,
+        password: this.password,
         email: this.email             
       };
       this.errors = [];
-      alert(`Form has been submitted - ${this.email} ${this.password}`);
-      if(this.email.length == 0)
+      
+      if(data.email.length == 0)
       {
         this.errors.push("Please enter email");
       }
@@ -106,9 +107,9 @@ export default {
       {
         this.errors.push("Please enter password");
       }
-      if(!data.email.includes("@"))
+      if(data.email.length != 0 && !data.email.includes("@"))
       {
-        this.errors.push("Please enter valid email");
+        this.errors.push("Please entera a valid email");
       }
       if(this.errors.length > 0) 
       {
@@ -116,7 +117,7 @@ export default {
         event.preventDefault();
       }
       this.isSuccess=true;
-      alert(`Form has been submitted - ${JSON.stringify(this.form)}`);
+      return true;      
     },      
   },
 };
